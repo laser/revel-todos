@@ -3,7 +3,7 @@ package controllers
 import "github.com/revel/revel"
 
 type Application struct {
-	*revel.Controller
+	GorpController
 }
 
 func (c Application) Index() revel.Result {

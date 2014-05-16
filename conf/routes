@@ -7,8 +7,9 @@ module:testrunner
 # Ignore favicon requests
 GET /favicon.ico      404
 
-GET /                 Application.Index
-GET /todos            Todos.Index
+GET /                  Application.Index
+GET /todos             Todos.Index
+POST /todos/:id/delete Todos.DeleteTodo
 
 # Map static resources from the /app/public folder to the /public path
 GET /*filepath Static.Serve("public")
