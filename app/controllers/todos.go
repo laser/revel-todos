@@ -16,13 +16,33 @@ func (c Todos) Index() revel.Result {
 		panic(err)
 	}
 
+	completed := 0
 	var todos []*models.Todo
 	for _, r := range results {
 		t := r.(*models.Todo)
 		todos = append(todos, t)
+		if t.Completed {
+			completed++
+		}
 	}
 
-	return c.Render(todos)
+	return c.Render(todos, completed)
+}
+
+func (c Todos) ClearCompletedTodos() revel.Result {
+	results, err := c.Txn.Select(models.Todo{}, `select * from todos where completed = ?`, true)
+	if err != nil {
+		panic(err)
+	}
+
+	for _, r := range results {
+		_, err = c.Txn.Delete(r)
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	return c.Redirect(routes.Todos.Index())
 }
 
 func (c Todos) DeleteTodo(id int) revel.Result {

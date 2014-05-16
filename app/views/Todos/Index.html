@@ -53,7 +53,9 @@
             </li>
           </ul>
           <!-- Hidden if no completed items are left ↓ -->
-          <button id="clear-completed">Clear completed (1)</button>
+          <form method="POST" action="{{url "Todos.ClearCompletedTodos"}}">
+            <button id="clear-completed" type="submit">Clear completed ({{.completed}})</button>
+          </form>
         </footer>
       </section>
     {{end}}
