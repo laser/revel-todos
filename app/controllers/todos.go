@@ -47,3 +47,17 @@ func (c Todos) UpdateTodo(id int, title string, completed bool) revel.Result {
 
 	return c.Redirect(routes.Todos.Index())
 }
+
+func (c Todos) CreateTodo(title string) revel.Result {
+	todo := models.Todo{
+		Completed: false,
+		Title:     title,
+	}
+
+	err := c.Txn.Insert(&todo)
+	if err != nil {
+		panic(err)
+	}
+
+	return c.Redirect(routes.Todos.Index())
+}

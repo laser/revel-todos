@@ -9,6 +9,7 @@ GET /favicon.ico      404
 
 GET /                  Application.Index
 GET /todos             Todos.Index
+POST /todos            Todos.CreateTodo
 POST /todos/:id/delete Todos.DeleteTodo
 POST /todos/:id/patch  Todos.UpdateTodo
 
