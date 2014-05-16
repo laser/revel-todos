@@ -17,16 +17,19 @@ func (c Todos) Index() revel.Result {
 	}
 
 	completed := 0
+	remaining := 0
 	var todos []*models.Todo
 	for _, r := range results {
 		t := r.(*models.Todo)
 		todos = append(todos, t)
 		if t.Completed {
 			completed++
+		} else {
+			remaining++
 		}
 	}
 
-	return c.Render(todos, completed)
+	return c.Render(todos, completed, remaining)
 }
 
 func (c Todos) ClearCompletedTodos() revel.Result {
