@@ -21,9 +21,12 @@
             {{range .todos}}
               <li class="editing">
                 <div>
-                  <input class="toggle" type="checkbox" {{if .Completed}}checked{{end}}>
-                  <input class="edit" value="{{.Title}}">
-                  <form method="POST" action="/todos/{{.Id}}/delete">
+                  <form method="POST" action="{{url "Todos.UpdateTodo" .Id}}">
+                    <input class="toggle" onclick="this.form.elements[2].value={{if .Completed}}false{{else}}true{{end}};this.form.submit();return false;" type="checkbox" {{if .Completed}}checked{{end}}>
+                    <input class="edit" name="title" type="text" value="{{.Title}}">
+                    <input name="completed" type="hidden" value="{{.Completed}}">
+                  </form>
+                  <form method="POST" action="{{url "Todos.DeleteTodo" .Id}}">
                     <button class="destroy" type="submit"></button>
                   </form>
                 </div>

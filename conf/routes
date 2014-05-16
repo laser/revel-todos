@@ -10,6 +10,7 @@ GET /favicon.ico      404
 GET /                  Application.Index
 GET /todos             Todos.Index
 POST /todos/:id/delete Todos.DeleteTodo
+POST /todos/:id/patch  Todos.UpdateTodo
 
 # Map static resources from the /app/public folder to the /public path
 GET /*filepath Static.Serve("public")
