@@ -12,3 +12,9 @@ install steps
 4. run: 'go get github.com/mattn/go-sqlite3'
 5. run: 'revel run github.com/laser/revel-todos'
 6. open the browser and hit http://localhost:9000
+
+interesting things to note
+--------------------------
+
+1. demonstrates using gorp and transactions (ORM)
+2. lots of view-helper stuff ("url" etc.)
