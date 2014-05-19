@@ -44,12 +44,12 @@ func checkErr(err error, msg string) {
 	}
 }
 
-type GorpController struct {
+type Gorp struct {
 	*r.Controller
 	Txn *gorp.Transaction
 }
 
-func (c *GorpController) Begin() r.Result {
+func (c *Gorp) Begin() r.Result {
 	txn, err := Dbm.Begin()
 	if err != nil {
 		panic(err)
@@ -58,7 +58,7 @@ func (c *GorpController) Begin() r.Result {
 	return nil
 }
 
-func (c *GorpController) Commit() r.Result {
+func (c *Gorp) Commit() r.Result {
 	if c.Txn == nil {
 		return nil
 	}
@@ -69,7 +69,7 @@ func (c *GorpController) Commit() r.Result {
 	return nil
 }
 
-func (c *GorpController) Rollback() r.Result {
+func (c *Gorp) Rollback() r.Result {
 	if c.Txn == nil {
 		return nil
 	}
